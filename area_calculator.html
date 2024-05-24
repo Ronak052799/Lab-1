@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Area Calculator</title>
+</head>
+<body>
+    <h1>Area of a Circle Calculator</h1>
+    <form method="post">
+        Radius: <input type="text" name="radius"><br>
+        <input type="submit" value="Calculate Area">
+    </form>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $radius = $_POST['radius'];
+        $command = escapeshellcmd("python3 calculate_area.py " . escapeshellarg($radius));
+        $output = shell_exec($command);
+        echo "<h3>Area of the Circle: " . $output . " square units</h3>";
+    }
+    ?>
+</body>
+</html>
